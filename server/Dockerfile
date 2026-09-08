@@ -10,6 +10,7 @@ FROM eclipse-temurin:17-jre
 
 WORKDIR /app
 ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75.0"
+ENV SPRING_PROFILES_ACTIVE="render"
 COPY --from=build /workspace/target/table-booking-*.jar app.jar
 USER 10001
 EXPOSE 10000
