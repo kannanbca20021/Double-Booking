@@ -34,9 +34,10 @@ type ApiError = { status: number; error: string; message: string }
 type Notice = { type: 'success' | 'error'; message: string }
 
 const today = new Date().toLocaleDateString('en-CA')
+const apiBaseUrl = (import.meta.env.VITE_API_URL ?? '').replace(/\/$/, '')
 
 async function apiRequest<T>(path: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(path, {
+  const response = await fetch(`${apiBaseUrl}${path}`, {
     ...options,
     headers: options?.body
       ? { 'Content-Type': 'application/json', ...options.headers }
